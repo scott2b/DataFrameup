@@ -1,18 +1,21 @@
 import json
 from http import HTTPStatus
 from wsgiref.simple_server import make_server
+import os
 import sys
 import pandas as pd
 from . import frameup
 
+dirname = os.path.dirname(os.path.realpath(__file__))
+
 try:
     from jinja2 import Template
-    templ = 'frameup/templates/example.j2.html'
+    templ = os.path.join(dirname, 'templates/example.j2.html')
     print(f'Using Jinja2 template: {templ}')
     template = Template(open(templ).read())
     render = lambda **kw: template.render(**kw)
 except ModuleNotFoundError:
-    templ = 'frameup/templates/example.html'
+    templ = os.path.join(dirname, 'templates/example.html')
     print(f'Using python template: {templ}')
     template = open(templ).read()
     render = lambda **kw: template.format(**kw)
@@ -53,6 +56,7 @@ def main():
     server = Server()
     server.df = pd.read_csv(fn)
     server.df.frameup.default_page_size = 5
+    print(f'Starting server on HOST: {HOST}; PORT: {PORT}')
     with make_server(HOST, PORT, server.serve) as httpd:
         httpd.serve_forever()
 
