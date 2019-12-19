@@ -30,6 +30,9 @@ Then navigate to http://localhost:8000/. Use the [Pandas DataFrame query syntax]
 
 ### Flask example
 
+(Does not currently work. Need to fix query parameter handling for frameworks
+that do not return lists for parameters)
+
 Given a template similar to example.js.html
 
 ```
