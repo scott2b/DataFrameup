@@ -1,5 +1,10 @@
 # DataFrameup
 
+```
+ $ pip install frameup
+ $ frameup <path-to-csvfile>
+```
+
 Frameup is the easiest way to get your Pandas DataFrame up into a Python-based web application. Simply `import frameup` and your DataFrames will become URL query parameter, and pagination aware.
 
 Zero dependencies, except Pandas of course.
