@@ -43,7 +43,7 @@ df = pd.read_csv(YOUR_CSV_FILE)
 
 @app.route('/mydataframe')
 def main():
-    data = df.frameup.data(path=url_for('mydataframe'), **request.args)
+    data = df.frameup.data(path=url_for('main'), **request.args)
     return render_template('example.j2.html', **data)
 ```
 
