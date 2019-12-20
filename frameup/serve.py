@@ -33,7 +33,7 @@ class Server(object):
             environ.get('QUERY_STRING', ''),
             justify='center',
             index_names=False,
-            classes=['pure-table-striped']
+            classes='pure-table-striped'
         )
         if 'text/html' in environ['HTTP_ACCEPT']:
             content_type = 'text/html; charset=utf-8'

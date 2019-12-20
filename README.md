@@ -25,7 +25,6 @@ Then navigate to http://localhost:8000/. Use the [Pandas DataFrame query syntax]
  $ curl 'http://localhost:8000/?query=&limit=10&page=1' | python -m json.tool
 ```
 
-
 ## Use it in your web application
 
 ### Flask example
@@ -55,6 +54,12 @@ For something ajaxy, just replace the return with:
 ```
 return jsonify(**data)
 ```
+
+## On query parameter objects
+
+Be sure the query parameter object you pass frameup does not return lists for values. `classes` is the only multi-valued parameter accepted, and should be passed as a comma-delimited list rather than multiple `classes` keys.
+
+Python web frameworks all have their own way of dealing with the vagaries of GET parameter specification hell. Most implement some concept of a `MultiDict`, but the APIs for these vary from one framework to the next. Thus, the requirement of only single-valued GET params greatly simplifies things here.
 
 ## Other projects
 

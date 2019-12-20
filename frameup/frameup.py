@@ -1,7 +1,7 @@
 import copy
 from collections import namedtuple
 from itertools import chain
-from urllib.parse import parse_qs, urlencode
+from urllib.parse import parse_qsl, urlencode
 import json
 import math
 import pandas as pd
@@ -33,7 +33,7 @@ class Frameup:
             'type': bool
         },
         'classes': {
-            'type': None # special case, list or string
+            'type': None # special case, comma-separated string
         },
         'escape': {
             'type': bool
@@ -94,11 +94,8 @@ class Frameup:
         r = {}
         for k,v in params.items():
             if k == 'classes':
-                # classes is a special case: comma-separated and/or a list
-                r['classes'] = list(chain(*[c.split(',') for c in v]))
+                r['classes'] = v.split(',')
                 continue
-            if isinstance(v, list):
-                v = v[0]
             if k in self.int_params:
                 r[k] = int(v)
             elif k in self.bool_params:
@@ -113,10 +110,10 @@ class Frameup:
 
     def extract_navigation(self, **params):
         return Navigation(
-            query=params.get('query', [''])[0],
-            limit=int(params.get('limit', [self.default_limit])[0]),
-            offset=int(params.get('offset', [0])[0]),
-            page=int(params.get('page', [self.default_page])[0])
+            query=params.get('query', ''),
+            limit=int(params.get('limit', self.default_limit)),
+            offset=int(params.get('offset', 0)),
+            page=int(params.get('page', self.default_page))
         )
 
     def page_qs(self, path, nav, page):
@@ -125,7 +122,7 @@ class Frameup:
 
     def data(self, qs='', path='/', render_html=True, include_data=True, **params):
         if qs:
-            params.update(parse_qs(qs))
+            params.update({ k:v for k,v in parse_qsl(qs)})
         results = self._obj
         nav = self.extract_navigation(**params)
         if nav.query:
