@@ -7,6 +7,12 @@
 
 Frameup is the easiest way to get your Pandas DataFrame up into a Python-based web application. Simply `import frameup` and your DataFrames will become URL query parameter, and pagination aware.
 
+Supports:
+
+ * Most of the [Pandas DataFrame to_html parameters](https://pandas.pydata.org/pandas-docs/version/0.23.4/generated/pandas.DataFrame.to_html.html) as URL query parameters
+ * Pagination query parameters: `page`, `limit`, `offset`
+ * Filtering of the DataFrame using the parameter `query` and the [Pandas DataFrame query syntax](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.query.html#pandas.DataFrame.query)
+
 Zero dependencies, except Pandas of course.
 
 ## Quick look
