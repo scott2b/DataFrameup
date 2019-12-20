@@ -29,7 +29,7 @@ Then navigate to http://localhost:8000/. Use the [Pandas DataFrame query syntax]
 
 ### Flask example
 
-Given a template similar to example.js.html
+Given a template similar to example.j2.html
 
 ```
 from flask import Flask, jsonify, render_template, request, url_for
