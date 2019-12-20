@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "frameup"
-version = "0.1.1"
+version = "0.1.2"
 description = "DataFrames all up in your web applications"
 authors = ["Scott Bradley <scott@codeslick.com>"]
 licence = "MIT"
