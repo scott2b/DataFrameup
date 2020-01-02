@@ -71,3 +71,4 @@ Projects to review / learn from / use instead
  * [Datasette](https://github.com/simonw/datasette)
  * [Workbench](https://workbenchdata.com/)
  * [Table Stacker](https://latimes-table-stacker.readthedocs.io)
+ * [R Reactable](https://glin.github.io/reactable/)
